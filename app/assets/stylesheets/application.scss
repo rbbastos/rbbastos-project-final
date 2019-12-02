@@ -1,0 +1,18 @@
+
+ @import 'carts';
+ @import 'products';
+ @import 'categories';
+
+$main-color: #387a02;
+$font-cursive: "Comic Sans MS", "Comic Sans", cursive;
+
+body{
+  color: $main-color;
+  font-family: $font-cursive;
+}
+
+a {
+  color: $main-color;
+  text-decoration: none;
+  background-color: transparent;
+}

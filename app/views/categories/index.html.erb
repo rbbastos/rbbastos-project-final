@@ -1,0 +1,7 @@
+<h1>Categories#index</h1>
+<p>Find me in app/views/categories/index.html.erb</p>
+<div class="columns is-gapless">
+  <% @categories.each do |category| %>
+    <%= link_to category.name, category, class: 'button is-dark' %>
+  <% end %>
+</div>

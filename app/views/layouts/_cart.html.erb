@@ -1,0 +1,5 @@
+<%= link_to "#{current_order.line_items.size} items / price #{number_to_currency (current_order.subtotal)}", cart_path%>
+<%= link_to cart_path do %>
+<span><%= image_tag "logos/shopping_cart-24px.svg", height: '30', alt: 'Shopping Cart' %></span>
+<span><%= products_in_cart_count %></span>
+<% end %>

@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  <strong>Title:</strong>
+  <%= @page.title %>
+</h1>
+
+<p>
+  <strong>Content:</strong>
+  <%= simple_format(@page.content) %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_page_path(@page) %> |
+<%= link_to 'Back', pages_path %>

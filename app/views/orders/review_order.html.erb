@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <h2>Shopping Cart</h2>
+      <strong>Shipping Address</strong>
+      <ul>
+      <li><%= @order.customer.firstName  %> <%= @order.customer.lastName  %></li>
+      <li><%= @order.customer.streetAddress  %></li>
+      <li><%= @order.customer.city  %>,
+      <%= @order.customer.province.name %> -
+      <%= @order.customer.postalCode  %></li>
+      <li><%= @order.customer.country %></li>
+      <li>Phone: <%= @order.customer.phone %></li>
+      </ul>
+    </div>
+    <div class="col-md-5">
+      <table>
+        <tbody>
+          <tr>
+            <td><span>Quantity of Items in Cart (<%= products_in_cart_count %>):</span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><hr></td>
+          </tr>
+          <tr>
+            <td><span>Total before tax: </span></td>
+            <td><%=number_to_currency(@order.subtotal, unit: 'CDN$ ') %></td>
+          </tr>
+          <tr>
+            <td><span>Estimated GST/HST: </span></td>
+            <td><%=number_to_currency(@order.gstTimeOfPurchase/100 * @order.subtotal, unit: 'CDN$ ') %></td>
+          </tr>
+          <tr>
+            <td><span>Estimated PST/RST/QST: </span></td>
+            <td><%=number_to_currency(@order.pstTimeOfPurchase/100 * @order.subtotal, unit: 'CDN$ ') %></td>
+          </tr>
+          <tr>
+            <td>
+                <hr>
+            </td>
+          </tr>
+          <tr>
+            <td>Order Total:</td>
+            <td><%=number_to_currency(@order.gstTimeOfPurchase/100 * @order.subtotal + @order.pstTimeOfPurchase/100 * @order.subtotal + @order.subtotal, unit: 'CDN$ ') %></td>
+          </tr>
+          <tr><td><%= link_to  "Place your order", order_final_path, class: 'btn btn-warning' %> <%= button_to "buy now!", order_final_path, method: :post, params: { id: @order.id }, remote: true %></td></tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+  <div>
+    <div >
+    <hr>
+    <% @order.line_items.each do |li| %>
+      <div  class="row">
+        <div class="col-md-2">
+          <%= image_tag li.product.image.variant(resize_to_limit: [90, 90]) %>
+        </div>
+        <div class="col-md-10">
+          <div>
+            <strong><%= li.product.name %></strong>
+          </div>
+          <div >
+                <span><strong><%= number_to_currency(li.product.sellPrice, unit: 'CDN$ ') %></strong></span>
+          </div>
+        <div>
+          <span>
+            Usually ships within 6 to 10 days.
+          </span>
+        </div>
+        <div>
+          <strong>Quantity:&nbsp;</strong><span ><%= li.quantity %></span>
+        </div>
+        <hr>
+      </div>
+    </div>
+
+    <% end %>
+
+  </div>
+</div>

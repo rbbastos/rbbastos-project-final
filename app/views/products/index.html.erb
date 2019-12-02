@@ -1,0 +1,17 @@
+<h1>Products#index</h1>
+<p>Find me in app/views/products/index.html.erb</p>
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+    <br>
+    <br>
+  </div>
+<% end %>
+
+<%= paginate @products %>
+<div class="columns is-multiline">
+  <%= render partial: 'product',
+             collection: @products,
+             locals: { name_is_link: true } %>
+</div>
+<%= paginate @products %>

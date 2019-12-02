@@ -1,0 +1,7 @@
+<h1>Deals#show</h1>
+<p>Find me in app/views/deals/show.html.erb</p>
+<div class="columns is-multiline">
+  <%= render partial: 'products/product',
+             collection: @deal.products,
+             locals: { name_is_link: true } %>
+</div>

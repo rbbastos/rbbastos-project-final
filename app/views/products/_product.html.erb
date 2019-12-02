@@ -1,0 +1,38 @@
+
+<div class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-fifth-fullhd">
+  <div class="card" style="height: 100%";>
+    <% if product.image.present? %>
+      <div class="card-image">
+        <figure class="image is-square">
+          <%= image_tag product.image.variant(resize_to_limit: [300, 300]) %>
+        </figure>
+      </div>
+    <% end %>
+    <div class="card-content">
+      <div class="media">
+        <div class="media-content">
+          <p class="title is-4">
+            <% if name_is_link %>
+              <%= link_to product.name, product%>
+            <% else %>
+              <%= product.name %>
+            <% end %>
+          </p>
+          <p><strong>Manufacturer: </strong><%= product.manufacturer %></p>
+
+        </div>
+      </div>
+      <div class="content">
+        <p><strong>Price: </strong><%= number_to_currency(product.sellPrice, unit: 'CDN$ ') %></p>
+
+        <%= form_with model: @line_item do |f| %>
+          <%= f.hidden_field :product_id, value: product.id %>
+          <%= f.number_field :quantity, value: 1, min: 1, class: 'form-control' %>
+          <%= f.submit "Add to cart" %>
+        <% end %>
+        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+      </div>
+    </div>
+  </div>
+</div>
+

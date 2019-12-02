@@ -1,0 +1,14 @@
+<div class="breadcrumbs">
+  <%= link_to "Products", root_path %> > <%= link_to @product.category.name, @product.category %> > <%= link_to "Product", @product %>
+</div>
+<br>
+<br>
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+<%= render partial: 'product',
+           object: @product,
+           locals: { name_is_link: false } %>
+
